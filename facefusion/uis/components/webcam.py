@@ -11,7 +11,6 @@ from tqdm import tqdm
 
 import facefusion.globals
 from facefusion import logger, wording
-from facefusion.content_analyser import analyse_stream
 from facefusion.typing import VisionFrame, Face, Fps
 from facefusion.face_analyser import get_average_face
 from facefusion.processors.frame.core import get_frame_processors_modules, load_frame_processor_module
@@ -122,8 +121,6 @@ def multi_process_capture(source_face : Face, webcam_capture : cv2.VideoCapture,
 			deque_capture_frames : Deque[VisionFrame] = deque()
 			while webcam_capture and webcam_capture.isOpened():
 				_, capture_frame = webcam_capture.read()
-				if analyse_stream(capture_frame, webcam_fps):
-					return
 				future = executor.submit(process_stream_frame, source_face, capture_frame)
 				futures.append(future)
 				for future_done in [ future for future in futures if future.done() ]:
