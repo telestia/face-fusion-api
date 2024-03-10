@@ -16,7 +16,7 @@ import facefusion.choices
 import facefusion.globals
 from facefusion.face_analyser import get_one_face, get_average_face
 from facefusion.face_store import get_reference_faces, append_reference_face
-from facefusion import face_analyser, face_masker, content_analyser, config, metadata, logger, wording
+from facefusion import face_analyser, face_masker, config, metadata, logger, wording
 from facefusion.processors.frame.core import get_frame_processors_modules, load_frame_processor_module
 from facefusion.common_helper import create_metavar, get_first
 from facefusion.execution_helper import encode_execution_providers, decode_execution_providers
@@ -178,7 +178,7 @@ def run(program : ArgumentParser) -> None:
 	logger.init(facefusion.globals.log_level)
 	if facefusion.globals.system_memory_limit > 0:
 		limit_system_memory(facefusion.globals.system_memory_limit)
-	if not pre_check() or not content_analyser.pre_check() or not face_analyser.pre_check() or not face_masker.pre_check():
+	if not pre_check() or not face_analyser.pre_check() or not face_masker.pre_check():
 		return
 	for frame_processor_module in get_frame_processors_modules(facefusion.globals.frame_processors):
 		if not frame_processor_module.pre_check():
