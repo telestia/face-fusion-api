@@ -9,7 +9,6 @@ import facefusion.globals
 import facefusion.processors.frame.core as frame_processors
 from facefusion import config, logger, wording
 from facefusion.face_analyser import clear_face_analyser
-from facefusion.content_analyser import clear_content_analyser
 from facefusion.typing import Face, VisionFrame, Update_Process, ProcessMode, ModelSet, OptionsWithModel, QueuePayload
 from facefusion.common_helper import create_metavar
 from facefusion.execution_helper import map_torch_backend
@@ -135,7 +134,6 @@ def post_process() -> None:
 		clear_frame_processor()
 	if facefusion.globals.video_memory_strategy == 'strict':
 		clear_face_analyser()
-		clear_content_analyser()
 
 
 def enhance_frame(temp_vision_frame : VisionFrame) -> VisionFrame:
